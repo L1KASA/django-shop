@@ -36,9 +36,14 @@
 
             {% if user.is_authenticated %}
                 <p class="text-gray-600 hover:text-gray-800 font-medium">{{ user.username }}</p>
-                <a href="{% url 'users:logout' %}" class="text-white bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded">Выйти</a>
+                <form action="{% url 'users:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="text-white bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded">
+                        Выйти
+                    </button>
+                </form>
             {% else %}
-            <a href="{% url 'users:login' %}" class="text-white bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded">Войти</a>
+                <a href="{% url 'users:login' %}" class="text-white bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded">Войти</a>
             {% endif %}
         </div>
     </div>
@@ -46,11 +51,21 @@
     <!-- Мобильное меню -->
     <div class="hidden" id="mobile-menu">
         <div class="flex flex-col items-start gap-4 mt-4 ml-auto">
-            <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">Главное меню</a>
+            <a href="{% url 'myapp:index' %}" class="text-gray-600 hover:text-gray-800 font-medium">Главное меню</a>
             <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">О нас</a>
             <a href="#" class="text-gray-600 hover:text-gray-800 font-medium">Контакты</a>
             <div class="flex flex-col items-start gap-2 mt-4">
-                <a href="#" class="text-white bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded">Войти</a>
+                {% if user.is_authenticated %}
+                <p class="text-gray-600 hover:text-gray-800 font-medium">{{ user.username }}</p>
+                <form action="{% url 'users:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="text-white bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded">
+                        Выйти
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'users:login' %}" class="text-white bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded">Войти</a>
+            {% endif %}
             </div>
         </div>
     </div>
