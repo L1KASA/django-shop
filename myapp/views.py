@@ -21,3 +21,4 @@ def id_item(request, id):
     return render(request, "phone.html", context)
 
 
+
