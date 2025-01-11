@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'myapp',
     'users',
+    'cart'
 ]
 
 MIDDLEWARE = [
@@ -180,3 +181,5 @@ LANGUAGE_CODE = 'ru'
 
 DATE_FORMAT = 'd.m.Y'  # Дата в формате день.месяц.год
 SHORT_DATE_FORMAT = 'd.m.Y'  # Краткий формат даты
+
+LOGIN_URL = 'users:login'

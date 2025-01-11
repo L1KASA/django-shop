@@ -24,6 +24,7 @@ urlpatterns = [
     path('hello/', include("myapp.urls", namespace="myapp")),
 
     path('users/', include("users.urls", namespace="users")),
+    path('cart/', include("cart.urls", namespace="cart")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

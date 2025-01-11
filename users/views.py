@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView
+from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
@@ -43,8 +44,6 @@ class ProfileUser(LoginRequiredMixin, UpdateView):
         context['edit_mode'] = self.request.GET.get('edit', 'false') == 'true'
         return context
 
-
-
 class UserPasswordChange(PasswordChangeView):
     form_class = UserPasswordChangeForm
     success_url = reverse_lazy('users:password_change_complete')
@@ -54,3 +53,13 @@ class UserPasswordChange(PasswordChangeView):
         context = super().get_context_data(**kwargs)
         context['active_tab'] = 'change_password'
         return context
+
+
+def delete_user(request):
+    if request.method == 'POST':
+        user = request.user
+        user.delete()
+
+        return redirect('users:delete_user')
+
+    return render(request, 'delete_user_completed.html')

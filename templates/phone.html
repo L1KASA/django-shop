@@ -51,7 +51,7 @@
                         </p>
 
                         <!-- Кнопка купить -->
-                        <button class="bg-blue-600 text-white hover:bg-blue-700 px-6 py-2 rounded-md mt-4 md:mt-0 w-3/5 transition-all transform hover:scale-105">
+                        <button data-product-id="{{ item.id }}" class="add-to-cart bg-blue-600 text-white hover:bg-blue-700 px-6 py-2 rounded-md mt-4 md:mt-0 w-3/5 transition-all transform hover:scale-105">
                             Купить
                         </button>
                     </div>
@@ -85,4 +85,6 @@
         }
     </script>
 
+
+<script src="{% static '/js/cart.js' %}"></script>
 {% endblock content %}
